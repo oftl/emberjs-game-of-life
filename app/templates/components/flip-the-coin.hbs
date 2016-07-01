@@ -1,0 +1,46 @@
+<script type="text/javascript">
+setInterval(function(){
+    $('blink').each(function(){
+        $(this).css('visibility' , $(this).css('visibility') === 'hidden' ? '' : 'hidden')
+    });
+}, 500);
+</script>
+
+<p>Playing best of {{ n }}</p>
+
+<div>
+    <div>last i flipped: {{ last_toss }}</div>
+    <div>your guess was: {{ last_guess }}</div>
+    <br />
+
+    <div>hey, you need just <strong>{{ wins_to_win_game }}</strong> more <strong>to win this game</strong>!</div>
+    <br />
+
+    <div>your wins: {{ wins }}</div>
+    <div>your losses: {{ losses }}</div>
+    <br />
+</div>
+
+<br />
+
+{{#if you_won}}
+    <strong><blink>YOU WON, CONGRATS!</blink></strong>
+    <br />
+    <button {{action "reset"}}>Try again!</button>
+{{else if you_lost}}
+    <strong><blink>YOU LOST, HAHA!</blink></strong>
+    <br />
+    <button {{action "reset"}}>Try again!</button>
+{{else}}
+    <div>
+    <button {{action "flipIt" "heads"}}>Flip It, I say heads!</button>
+    </div>
+    <div>
+    <button {{action "flipIt" "tails"}}>Flip It, I say tails!</button>
+    </div>
+{{/if}}
+
+<div>
+    <div>games won:  {{ games_won }}</div>
+    <div>games lost: {{ games_lost }}</div>
+</div>

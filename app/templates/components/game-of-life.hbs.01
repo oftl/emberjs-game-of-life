@@ -1,0 +1,50 @@
+<br />
+
+<span style="display:table;">
+<span style="display:table-row;">
+    <span style="display:table-cell;">
+        <div>
+            <canvas id="universe" width={{canvas_width}} height={{canvas_height}} style="border: 1px solid black"></canvas>
+            <br />
+
+            <div>
+                <button {{action "go"}}>Go</button>
+                <button {{action "pause"}}>Pause</button>
+                <button {{action "step"}}>Step</button>
+                <button {{action "faster"}}>Go faster</button>
+                <button {{action "slower"}}>Slow down</button>
+            </div>
+
+            <br />
+            <div>Generation:  {{ gen_no }}</div>
+            <div>Interval of ticks (ms): {{ interval }}</div>
+        </div>
+    </span>
+
+    <span style="display:table-cell;">
+
+        <span style="display:table;">
+            <span style="display:table-row;">
+                <span style="display:table-cell;" />
+                <span style="display:table-cell;"><button {{action "vp_mv_north"}}>north</button></span>
+                <span style="display:table-cell;" />
+            </span>
+            <span style="display:table-row;">
+                <span style="display:table-cell;"><button {{action "vp_mv_west"}}>west</button></span>
+                <span style="display:table-cell;" />
+                <span style="display:table-cell;"><button {{action "vp_mv_east"}}>east</button></span>
+            </span>
+            <span style="display:table-row;">
+                <span style="display:table-cell;" />
+                <span style="display:table-cell;"><button {{action "vp_mv_south"}}>south</button></span>
+                <span style="display:table-cell;" />
+            </span>
+        </span>
+    </span>
+
+    <span>
+        {{input type="checkbox" name="debug" checked=debug}}    debug
+    </span>
+
+</span>
+</span>

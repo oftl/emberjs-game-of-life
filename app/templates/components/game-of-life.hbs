@@ -1,0 +1,167 @@
+<br />
+
+<div>
+    <div style="float:left; padding:1em;">
+        <p>Move viewport</p>
+        <span style="display:table;">
+            <span style="display:table-row;">
+                <span style="display:table-cell;" />
+                <span style="display:table-cell;"><button {{action "vp_mv_north"}}>north</button></span>
+                <span style="display:table-cell;" />
+            </span>
+            <span style="display:table-row;">
+                <span style="display:table-cell;"><button {{action "vp_mv_west"}}>west</button></span>
+                <span style="display:table-cell;" />
+                <span style="display:table-cell;"><button {{action "vp_mv_east"}}>east</button></span>
+            </span>
+            <span style="display:table-row;">
+                <span style="display:table-cell;" />
+                <span style="display:table-cell;"><button {{action "vp_mv_south"}}>south</button></span>
+                <span style="display:table-cell;" />
+            </span>
+        </span>
+
+        <div><p>Grow/shrink</p>
+        <button {{action "vp_grow"}}>+</button>
+        <button {{action "vp_shrink"}}>-</button>
+        </div>
+
+        <div><p>Zoom in/out</p>
+        <button {{action "zoom_in"}}>+</button>
+        <button {{action "zoom_out"}}>-</button>
+        </div>
+
+        <hr />
+
+        <div><p>Some numbers</p>
+
+            <span style="display:table;">
+                <span style="display:table-row;">
+                    <span style="display:table-cell;">width</span>
+                    <span style="display:table-cell;text-align:right;padding-left:2em">{{canvas_width}}</span>
+                </span>
+                <span style="display:table-row;">
+                    <span style="display:table-cell;">height</span>
+                    <span style="display:table-cell;text-align:right;padding-left:2em">{{canvas_height}}</span>
+                </span>
+                <span style="display:table-row;">
+                    <span style="display:table-cell;">cell_x</span>
+                    <span style="display:table-cell;text-align:right;padding-left:2em">{{cell_x}}</span>
+                </span>
+                <span style="display:table-row;">
+                    <span style="display:table-cell;">cell_y</span>
+                    <span style="display:table-cell;text-align:right;padding-left:2em">{{cell_y}}</span>
+                </span>
+                <span style="display:table-row;">
+                    <span style="display:table-cell;">vp_x</span>
+                    <span style="display:table-cell;text-align:right;padding-left:2em">{{vp_x}}</span>
+                </span>
+                <span style="display:table-row;">
+                    <span style="display:table-cell;">vp_y</span>
+                    <span style="display:table-cell;text-align:right;padding-left:2em">{{vp_y}}</span>
+                </span>
+                <span style="display:table-row;">
+                    <span style="display:table-cell;">vp_w</span>
+                    <span style="display:table-cell;text-align:right;padding-left:2em">{{vp_w}}</span>
+                </span>
+                <span style="display:table-row;">
+                    <span style="display:table-cell;">vp_h</span>
+                    <span style="display:table-cell;text-align:right;padding-left:2em">{{vp_h}}</span>
+                </span>
+                <span style="display:table-row;">
+                    <span style="display:table-cell;">outside_vp</span>
+                    <span style="display:table-cell;text-align:right;padding-left:2em">{{outside_vp}}</span>
+                </span>
+                <span style="display:table-row;">
+                    <span style="display:table-cell;">alive_cnt</span>
+                    <span style="display:table-cell;text-align:right;padding-left:2em">{{alive_cnt}}</span>
+                </span>
+                <span style="display:table-row;">
+                    <span style="display:table-cell;">gen_no</span>
+                    <span style="display:table-cell;text-align:right;padding-left:2em">{{gen_no}}</span>
+                </span>
+                <span style="display:table-row;">
+                    <span style="display:table-cell;">birthed_cnt</span>
+                    <span style="display:table-cell;text-align:right;padding-left:2em">{{birthed_cnt}}</span>
+                </span>
+                <span style="display:table-row;">
+                    <span style="display:table-cell;">killed_cnt</span>
+                    <span style="display:table-cell;text-align:right;padding-left:2em">{{killed_cnt}}</span>
+                </span>
+            </span>
+
+        </div> <!-- <div><p>Some numbers</p> -->
+
+        <hr />
+
+        <p>Misc settings</p>
+        <span>
+            <div> {{input type="checkbox" name="debug" checked=debug}}             debug       </div>
+            <div> {{input type="checkbox" name="round_cells" checked=round_cells}} round cells </div>
+            <div> {{input type="checkbox" name="drawing" checked=drawing}}         drawing       </div>
+        </span>
+    </div>
+
+    <div style="float:left; padding:1em;">
+        <div>
+            <div>Generation: {{ gen_no }}</div>
+            <div>Interval of ticks (ms): {{ interval }}</div>
+
+            <div style="padding:1em;">
+                <button {{action "go"}}>Go</button>
+                <button {{action "pause"}}>Pause</button>
+                <button {{action "step"}}>Step</button>
+                <button {{action "faster"}}>Go faster</button>
+                <button {{action "slower"}}>Slow down</button>
+            </div>
+
+            <canvas id="universe" style="padding:2em;" width={{canvas_width}} height={{canvas_height}} style="border: 1px solid black"></canvas>
+
+        </div>
+    </div>
+
+    <div style="float:left; padding:1em;">
+        <div><p>Even more semi-meaningful numbers</p>
+
+            {{# if debug }}
+
+            <span style="display:table;">
+                <span style="display:table-row;">
+                    <span style="display:table-cell;">alive_len</span>
+                    <span style="display:table-cell;text-align:right;padding-left:2em">{{dbg_alive_len}}</span>
+                </span>
+                <span style="display:table-row;">
+                    <span style="display:table-cell;">neigh_len</span>
+                    <span style="display:table-cell;text-align:right;padding-left:2em">{{dbg_neigh_len}}</span>
+                </span>
+                <span style="display:table-row;">
+                    <span style="display:table-cell;">alive/neigh</span>
+                    <span style="display:table-cell;text-align:right;padding-left:2em">{{dbg_alive_by_neigh}}</span>
+                </span>
+            </span>
+            <hr />
+
+            <span style="display:table;">
+                <span style="display:table-row;">
+                    <span style="display:table-cell;">total_time (s)</span>
+                    <span style="display:table-cell;text-align:right;padding-left:2em">{{total_time}}</span>
+                </span>
+                <span style="display:table-row;">
+                    <span style="display:table-cell;">gen_time (ms)</span>
+                    <span style="display:table-cell;text-align:right;padding-left:2em">{{gen_time}}</span>
+                </span>
+                <span style="display:table-row;">
+                    <span style="display:table-cell;">tick_time (ms)</span>
+                    <span style="display:table-cell;text-align:right;padding-left:2em">{{tick_time}}</span>
+                </span>
+            </span>
+
+            {{ else }}
+            <p>(enabled via debug)</p>
+            {{/ if }}
+
+        </div> <!-- <div><p>Even more numbers</p> -->
+    </div>
+
+
+</div>
